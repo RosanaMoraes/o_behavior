@@ -1,0 +1,48 @@
+
+```{r}
+library(dplyr)
+library(tidyverse)
+```
+
+```{r}
+obs <- read.csv("obs_sub.csv")
+summary(obs)
+```
+
+```{r}
+wins <- obs %>% 
+  filter(Win == 1) %>% 
+  group_by(Subject, Opponent)  %>% 
+  summarize(n=n())
+wins
+```
+
+
+
+```{r}
+wins1 <- obs %>% 
+  filter(Win == 1) %>% 
+  group_by(Subject, Opponent)  %>% 
+  summarize(n=n()) %>% 
+  spread(Opponent, n)
+wins1
+```
+
+
+```{r}
+losses <- obs %>% 
+  filter(Loose == 1) %>% 
+  group_by(Subject, Opponent)  %>% 
+  summarize(n=n())
+losses
+```
+
+```{r}
+losses1 <- obs %>% 
+  filter(Loose == 1) %>% 
+  group_by(Subject, Opponent)  %>% 
+  summarize(n=n()) %>% 
+  spread(Opponent, n)
+losses1
+```
+
